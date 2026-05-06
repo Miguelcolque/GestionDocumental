@@ -10,19 +10,22 @@ builder.Services.AddHttpClient();
 builder.Services.AddSingleton<GestionDocumental.Soporte.CONSTANTES>();
 
 
-
-
-// Configurar CORS para permitir acceso desde otros proyectos locales
+// ===== CONFIGURACIÓN CORS ACTUALIZADA PARA PRODUCCIÓN =====
+// Configurar CORS para permitir acceso desde otros proyectos locales y producción en Render
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalNetwork", policy =>
     {
+        // Orígenes permitidos para desarrollo local
         policy.WithOrigins("http://localhost:*", "http://192.168.*:*")
+        // CAMBIO: Agregar URL de producción en Render (reemplazar con tu URL real)
+              .WithOrigins("https://tu-frontend-de-render.onrender.com")
               .AllowAnyMethod()
               .AllowAnyHeader()
               .AllowCredentials();
     });
 });
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -47,7 +50,8 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
-// Habilitar CORS para permitir acceso desde otros proyectos locales
+// ===== HABILITAR CORS PARA PERMITIR ACCESO DESDE OTROS PROYECTOS LOCALES Y PRODUCCIÓN =====
+// Habilitar CORS para permitir acceso desde otros proyectos locales y producción
 app.UseCors("AllowLocalNetwork");
 
 app.UseAuthorization();

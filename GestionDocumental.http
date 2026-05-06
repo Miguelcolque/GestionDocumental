@@ -1,0 +1,6 @@
+@GestionDocumental_HostAddress = http://localhost:5113
+
+GET {{GestionDocumental_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

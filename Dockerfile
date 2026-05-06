@@ -22,4 +22,4 @@ ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
 # Iniciar la aplicación
-ENTRYPOINT ["dotnet", "tu_proyecto.dll"]
+ENTRYPOINT ["dotnet", "GestionDocumental.dll"]
